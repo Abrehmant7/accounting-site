@@ -1,0 +1,57 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingContact from '@/components/FloatingContact.astro';
+import FinanceWorkspace from '@/components/FinanceWorkspace.astro';
+import Icon from '@/components/Icon.astro';
+import OutsourcingValue from '@/components/OutsourcingValue.astro';
+import HomeServices from '@/components/HomeServices.astro';
+import HomeProcess from '@/components/HomeProcess.astro';
+import HomeAudience from '@/components/HomeAudience.astro';
+import HomeFaq from '@/components/HomeFaq.astro';
+import HomeContact from '@/components/HomeContact.astro';
+import { homeFaqs } from '@/data/home';
+import '@/styles/home-sections.css';
+import '@/styles/home-completion.css';
+import '@/styles/home-motion.css';
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: homeFaqs.map(faq => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })),
+};
+---
+<Layout title="Finance that moves you forward" description="Thoughtful finance and accounting outsourcing for accounting practices, SMEs, and growing businesses. Expert support. Clearer numbers. Room to grow." structuredData={faqSchema}>
+  <Header />
+  <main id="main-content" tabindex="-1">
+    <section class="home-hero" aria-labelledby="hero-heading">
+      <div class="shell hero-layout">
+        <div class="hero-copy">
+          <div class="hero-eyebrow hero-enter"><span class="eyebrow-mark" aria-hidden="true"><span></span><span></span><span></span></span>Finance & accounting outsourcing<span class="eyebrow-line" aria-hidden="true"></span></div>
+          <h1 id="hero-heading" class="hero-enter hero-enter-heading">Finance that<br />moves you<br /><span class="hero-forward">forward<span class="heading-period">.</span><svg viewBox="0 0 350 15" fill="none" aria-hidden="true"><path d="M3 10C86 1 228 1 344 8" stroke="currentColor" stroke-width="3" stroke-linecap="round" /></svg></span></h1>
+          <p class="hero-description hero-enter hero-enter-description">Behind every ambitious business is a clearer set of numbers. We take care of the accounting, so you can focus on what comes next.</p>
+          <div class="hero-actions hero-enter hero-enter-actions">
+            <a href="/contact/" class="btn-primary hero-cta">Let’s talk about your business <Icon name="arrow-up-right" size={17} /></a>
+            <a href="#expertise" class="hero-secondary">Explore our expertise <Icon name="arrow-right" size={16} /></a>
+          </div>
+          <div class="hero-assurance hero-enter hero-enter-assurance"><span class="assurance-line" aria-hidden="true"></span><span>Your goals. Your tools. An extension of your team.</span></div>
+        </div>
+        <FinanceWorkspace />
+      </div>
+      <div class="shell hero-audience hero-enter hero-enter-audience">
+        <p>Good with numbers.<br /><strong>Better, together.</strong></p>
+        <div><Icon name="layers" size={19} /><span>Accounting practices</span></div>
+        <div><Icon name="chart" size={19} /><span>Ambitious SMEs</span></div>
+        <div><Icon name="people" size={19} /><span>Growing businesses</span></div>
+        <span class="audience-endmark" aria-hidden="true">↗</span>
+      </div>
+    </section>
+    <OutsourcingValue />
+    <HomeServices />
+    <HomeProcess />
+    <HomeAudience />
+    <HomeFaq />
+    <HomeContact />
+  </main>
+  <Footer />
+  <FloatingContact />
+</Layout>

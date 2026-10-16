@@ -1,0 +1,33 @@
+{
+  "name": "finance-accounting-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "check": "astro check",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "astro": "^5.13.0",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.1.0"
+  },
+  "overrides": {
+    "astro": {
+      "sharp": "$sharp",
+      "esbuild": "^0.28.1"
+    }
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.9.0",
+    "vite": "^6.3.0"
+  }
+}

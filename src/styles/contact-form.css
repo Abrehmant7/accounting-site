@@ -1,0 +1,35 @@
+@layer components {
+  .contact-form-panel { min-width: 0; padding: 2rem; border: 1px solid #E2DDEC; border-radius: 16px; background: white; box-shadow: 0 15px 50px -35px #67518B40; }
+  .contact-form-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.75rem; }
+  .contact-form-heading :is(h2, h3) { font-size: 17px; font-weight: 500; letter-spacing: -0.035em; }
+  .contact-form-heading > span { color: #A096AB; font-size: 6px; letter-spacing: 0.08em; white-space: nowrap; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-field { min-width: 0; margin-bottom: 1rem; }
+  .form-field label { display: block; margin-bottom: 8px; color: #566176; font-size: 10px; font-weight: 500; line-height: 1.6; }
+  .form-field label > span:not(.field-optional) { color: #8F7CAC; }
+  .field-optional { color: #A29AAE; font-size: 9px; font-weight: 400; }
+  .form-field input, .form-field select, .form-field textarea { display: block; width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid #E3E3ED; border-radius: 7px; background: #FDFDFE; color: #334155; font-size: 11px; line-height: 1.6; transition: border-color 160ms ease; }
+  .form-field textarea { resize: vertical; min-height: 100px; }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: #A4A9B5; opacity: 1; }
+  .form-field :is(input, select, textarea):hover { border-color: #C8BBD9; }
+  .enquiry-submit { width: 100%; justify-content: space-between; margin-top: 2px; font-size: 11px; }
+  .enquiry-submit:disabled { cursor: default; opacity: 0.55; box-shadow: none; }
+  .form-privacy { margin-top: 12px; color: #9197A5; font-size: 8px; line-height: 1.7; text-align: center; }
+  .form-privacy a { text-decoration: underline; text-underline-offset: 3px; }
+  .enquiry-status { margin-top: 12px; color: #81718F; font-size: 10px; line-height: 1.8; }
+  .enquiry-status:empty { margin: 0; }
+  .enquiry-status[data-state='error'] { color: #A53349; }
+  .enquiry-status[data-state='success'] { color: #5F4A86; }
+}
+@media (width < 75rem) {
+  .contact-form-panel { padding: 1.5rem; }
+}
+@media (width < 64rem) {
+  .contact-form-panel { padding: 1.25rem; }
+  .contact-form-heading :is(h2, h3) { font-size: 15px; }
+  .contact-form-heading > span { display: none; }
+  .form-grid { grid-template-columns: 1fr; gap: 0; }
+}
+@media (width < 40rem) {
+  .form-field :is(input, select, textarea) { font-size: 16px; }
+}

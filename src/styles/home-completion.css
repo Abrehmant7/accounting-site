@@ -1,0 +1,144 @@
+@layer components {
+  .audience-profile-link > svg { display: inline; margin-left: 7px; color: var(--color-muted); }
+  .audience-profile-link:hover { color: var(--color-cobalt); }
+  .home-process { position: relative; overflow: clip; padding-block: 6rem; background: radial-gradient(ellipse at 0% 100%, #272042 0, transparent 62%), #10141F; color: white; }
+  .process-layout { display: grid; grid-template-columns: 1fr 1.05fr; gap: 6rem; }
+  .home-process .section-kicker { color: #A9A0BF; }
+  .home-process .kicker-rule { background: #4D445F; }
+  .process-copy h2, .faq-introduction h2, .contact-copy h2 { font-size: clamp(2.2rem, 3.5vw, 3rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.055em; }
+  .process-copy h2 > span { color: #B8ABD7; }
+  .process-copy > p:not(.section-kicker) { max-width: 24rem; margin-top: 1.5rem; color: #AAB3C5; font-size: 13px; line-height: 1.9; }
+  .process-link { display: inline-flex; min-height: 44px; align-items: center; gap: 1rem; margin-top: 1.5rem; color: #E2DCFA; font-size: 12px; font-weight: 500; }
+  .process-link > svg { transition: transform 180ms ease; }
+  .process-link:hover > svg { transform: translate(2px, -2px); }
+  .connection-diagram { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 15px; max-width: 350px; margin-top: 3rem; color: #B4ABCA; font-size: 7px; font-weight: 500; letter-spacing: 0.1em; }
+  .connection-diagram > div { position: relative; display: flex; align-items: center; justify-content: space-around; height: 25px; }
+  .connection-diagram > div::before { position: absolute; inset-inline: 0; height: 1px; background: linear-gradient(90deg, #4B62A4, #8D6DAA); content: ''; }
+  .connection-diagram i { z-index: 1; width: 5px; height: 13px; border: 2px solid #27213C; border-radius: 2px; background: #8D78B3; }
+  .connection-diagram svg { z-index: 1; color: #B4ABCA; }
+  .connection-diagram > p { grid-column: 1 / -1; margin-top: 4px; color: #827993; font-size: 9px; font-weight: 400; letter-spacing: 0; }
+  .process-steps { counter-reset: process; }
+  .process-steps > li { display: grid; grid-template-columns: 35px 1fr; gap: 1.25rem; padding-block: 1.5rem; border-bottom: 1px solid #2D3041; }
+  .process-steps > li:first-child { padding-top: 0; }
+  .process-steps > li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .process-step-number { padding-top: 6px; color: #9D8BBB; font-size: 10px; }
+  .process-steps h3 { font-size: 20px; font-weight: 500; letter-spacing: -0.035em; }
+  .process-steps p { max-width: 28rem; margin-top: 9px; color: #AAB3C5; font-size: 12px; line-height: 1.9; }
+
+  .home-audience { padding-block: 6rem; background: white; }
+  .audience-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .audience-card { padding: 1.75rem; border: 1px solid #E6E5EE; border-radius: 14px; background: #FCFCFE; }
+  .audience-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; color: #8F7BAC; }
+  .audience-card-top > span { color: #8B94A4; font-size: 9px; }
+  .audience-subtitle { margin-bottom: 12px; color: #877999; font-size: 9px; }
+  .audience-card h3 { min-height: 62px; font-size: 25px; font-weight: 500; line-height: 1.25; letter-spacing: -0.045em; }
+  .audience-description { min-height: 80px; margin-top: 1rem; color: #64748B; font-size: 12px; line-height: 1.85; }
+  .audience-detail { display: flex; align-items: start; gap: 10px; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #EAE8F1; color: #7A718A; }
+  .audience-detail > span { width: 10px; height: 1px; flex-shrink: 0; margin-top: 9px; background: #AB98C7; }
+  .audience-detail > p { font-size: 10px; line-height: 1.8; }
+  .software-band { display: flex; align-items: center; justify-content: space-between; gap: 3rem; margin-top: 3.5rem; padding-top: 2.75rem; border-top: 1px solid #E6E5EE; }
+  .software-kicker { margin-bottom: 10px; color: #8A7A9F; font-size: 7px; font-weight: 500; letter-spacing: 0.09em; }
+  .software-band h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.03em; }
+  .software-band > div > p:last-child { margin-top: 8px; color: #64748B; font-size: 11px; }
+  .software-band ul { display: flex; align-items: center; gap: 2.5rem; color: #768196; }
+  .software-band li { font-size: 22px; font-weight: 600; letter-spacing: -0.05em; }
+
+  .home-faq { padding-block: 6rem; border-block: 1px solid #EBE9F2; background: #FAF9FD; }
+  .faq-layout { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 6rem; align-items: start; }
+  .faq-introduction h2 > span { color: #87759F; }
+  .faq-introduction > p:not(.section-kicker) { max-width: 20rem; margin-top: 1.5rem; color: #64748B; font-size: 13px; line-height: 1.9; }
+  .faq-introduction > .section-text-link { margin-top: 1.25rem; font-size: 11px; }
+  .faq-list { border-top: 1px solid #E2DEEB; }
+  .faq-list details { border-bottom: 1px solid #E2DEEB; scroll-margin-top: 7rem; }
+  .faq-list summary { display: flex; min-height: 80px; align-items: center; gap: 1rem; padding-block: 1.25rem; }
+  .faq-number { color: #9685AA; font-size: 9px; }
+  .faq-list summary h3 { flex: 1; font-size: 13px; font-weight: 500; line-height: 1.6; letter-spacing: -0.01em; }
+  .faq-toggle { position: relative; width: 13px; height: 13px; flex-shrink: 0; color: #8C78AC; transition: transform 200ms ease; }
+  .faq-toggle::before, .faq-toggle::after { position: absolute; top: 6px; left: 1px; width: 11px; height: 1px; background: currentColor; content: ''; }
+  .faq-toggle::after { transform: rotate(90deg); }
+  .faq-list details[open] .faq-toggle { transform: rotate(45deg); }
+  .faq-answer { padding: 0 2.5rem 1.5rem 1.9rem; animation: faq-answer-in 220ms ease both; }
+  .faq-answer p { color: #64748B; font-size: 12px; line-height: 1.9; }
+
+  .home-contact { position: relative; overflow: clip; padding-block: 6rem; background: radial-gradient(ellipse at 0 100%, #EEE8FA 0, transparent 60%), linear-gradient(135deg, #F9F8FD, #F2F5FD); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1.05fr; align-items: start; gap: 6rem; }
+  .contact-copy { padding-top: 1rem; }
+  .contact-copy h2 { font-size: clamp(2.3rem, 4vw, 3.5rem); }
+  .contact-copy h2 > span { color: #7E67A5; }
+  .contact-copy > p:not(.section-kicker) { max-width: 23rem; margin-top: 1.5rem; color: #64748B; font-size: 13px; line-height: 1.9; }
+  .contact-expectation { margin-top: 3rem; padding-left: 1.5rem; border-left: 1px solid #CEBFDF; }
+  .contact-expectation > span { color: #8C7B9E; font-size: 7px; font-weight: 500; letter-spacing: 0.1em; }
+  .contact-expectation h3 { margin-top: 1rem; color: #5F546D; font-size: 24px; font-weight: 500; line-height: 1.45; letter-spacing: -0.035em; }
+  .contact-expectation > p { margin-top: 1rem; color: #8A8195; font-size: 10px; line-height: 1.8; }
+  .contact-direct { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2rem; color: #65528F; font-size: 11px; }
+}
+
+@keyframes faq-answer-in { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+
+@media (width < 75rem) {
+  .process-layout, .faq-layout, .contact-layout { gap: 3.5rem; }
+  .audience-card { padding: 1.5rem; }
+  .audience-card h3 { font-size: 23px; }
+  .software-band ul { gap: 1.75rem; }
+  .software-band li { font-size: 20px; }
+}
+
+@media (width < 64rem) {
+  .home-process, .home-audience, .home-faq, .home-contact { padding-block: 4.5rem; }
+  .process-layout, .faq-layout, .contact-layout { gap: 2rem; }
+  .process-copy h2, .faq-introduction h2 { font-size: 34px; }
+  .process-copy > p:not(.section-kicker), .faq-introduction > p:not(.section-kicker), .contact-copy > p:not(.section-kicker) { font-size: 12px; }
+  .process-steps > li { grid-template-columns: 22px 1fr; gap: 0.75rem; }
+  .process-steps h3 { font-size: 18px; }
+  .process-steps p { font-size: 11px; }
+  .connection-diagram { gap: 8px; font-size: 6px; }
+  .audience-cards { gap: 0.75rem; }
+  .audience-card { padding: 1.25rem; }
+  .audience-card h3 { font-size: 21px; min-height: 79px; }
+  .audience-subtitle { font-size: 8px; }
+  .audience-description { min-height: 120px; font-size: 11px; }
+  .audience-detail > p { font-size: 9px; }
+  .software-band { align-items: start; gap: 2rem; }
+  .software-band h3 { max-width: 19rem; font-size: 16px; }
+  .software-band > div > p:last-child { max-width: 19rem; line-height: 1.8; }
+  .software-band ul { flex-wrap: wrap; gap: 1rem 1.5rem; justify-content: end; }
+  .software-band li { font-size: 18px; }
+  .faq-list summary { gap: 0.75rem; }
+  .faq-list summary h3 { font-size: 12px; }
+  .faq-answer { padding-left: 1.6rem; padding-right: 1rem; }
+  .faq-answer p { font-size: 11px; }
+  .contact-layout { grid-template-columns: 0.85fr 1.15fr; }
+  .contact-copy h2 { font-size: 35px; }
+  .contact-expectation { padding-left: 1rem; }
+  .contact-expectation h3 { font-size: 21px; }
+}
+
+@media (width < 40rem) {
+  .home-process, .home-audience, .home-faq, .home-contact { padding-block: 3.5rem; }
+  .process-layout, .faq-layout, .contact-layout { grid-template-columns: 1fr; gap: 2.75rem; }
+  .process-copy h2, .faq-introduction h2 { font-size: clamp(29px, 8.4vw, 39px); }
+  .connection-diagram { max-width: 315px; margin-top: 2rem; font-size: 7px; }
+  .process-steps > li { grid-template-columns: 25px 1fr; padding-block: 1.4rem; }
+  .process-steps h3 { font-size: 20px; }
+  .process-steps p { font-size: 12px; }
+  .audience-cards { grid-template-columns: 1fr; }
+  .audience-card { padding: 1.5rem; }
+  .audience-card-top { margin-bottom: 1.5rem; }
+  .audience-subtitle { font-size: 9px; }
+  .audience-card h3 { min-height: 0; font-size: 25px; }
+  .audience-description { min-height: 0; margin-top: 1rem; font-size: 12px; }
+  .audience-detail { margin-top: 1.25rem; }
+  .audience-detail > p { font-size: 10px; }
+  .software-band { flex-direction: column; gap: 1.75rem; margin-top: 2.5rem; padding-top: 2rem; }
+  .software-band h3, .software-band > div > p:last-child { max-width: none; }
+  .software-band li { font-size: 22px; }
+  .software-band ul { justify-content: start; gap: 1.5rem; }
+  .faq-introduction > p:not(.section-kicker) { max-width: 25rem; }
+  .faq-list summary { min-height: 76px; }
+  .faq-list summary h3 { font-size: 12px; }
+  .faq-answer p { font-size: 12px; }
+  .contact-copy { padding-top: 0; }
+  .contact-copy h2 { font-size: clamp(32px, 10vw, 44px); }
+  .contact-expectation { margin-top: 2rem; }
+  .contact-expectation h3 { font-size: 22px; }
+}

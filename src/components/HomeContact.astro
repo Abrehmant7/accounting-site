@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+import OrbitalAccent from './OrbitalAccent.astro';
+import { siteConfig } from '@/config/site';
+import ContactForm from './ContactForm.astro';
+---
+<section id="contact" class="home-contact" aria-labelledby="contact-heading">
+  <OrbitalAccent class="contact-orbit" />
+  <div class="shell contact-layout">
+    <div class="contact-copy reveal-on-scroll"><p class="section-kicker"><span>06 / YOUR NEXT CHAPTER</span><span class="kicker-rule" aria-hidden="true"></span></p><h2 id="contact-heading">Let’s make room<br />for <span>what’s next.</span></h2><p>Tell us a little about your business, your workload, and where you’d like some breathing room.</p><div class="contact-expectation"><span>THE FIRST CONVERSATION</span><h3>Understand the work.<br />Explore the fit.<br />Find a way forward.</h3><p>A quick introduction is all we need to get started.</p></div>{siteConfig.contact.email && <a class="contact-direct" href={`mailto:${siteConfig.contact.email}`}>Prefer email? {siteConfig.contact.email}<Icon name="arrow-up-right" size={14} /></a>}</div>
+    <ContactForm class="reveal-on-scroll" />
+  </div>
+</section>

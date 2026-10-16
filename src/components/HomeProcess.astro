@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+import OrbitalAccent from './OrbitalAccent.astro';
+import { onboardingSteps } from '@/data/home';
+---
+<section id="how-it-works" class="home-process" aria-labelledby="process-heading">
+  <OrbitalAccent class="process-orbit" />
+  <div class="shell process-layout">
+    <div class="process-copy reveal-on-scroll">
+      <p class="section-kicker"><span>03 / HOW WE CONNECT</span><span class="kicker-rule" aria-hidden="true"></span></p>
+      <h2 id="process-heading">A smooth handover.<br /><span>A stronger everyday.</span></h2>
+      <p>Good outsourcing starts with understanding. A thoughtful transition brings your people, processes, and priorities into sync.</p>
+      <a href="/contact/" class="process-link">Let’s map your next step<Icon name="arrow-up-right" size={17} /></a>
+      <div class="connection-diagram" aria-hidden="true"><span>YOUR BUSINESS</span><div><i></i><i></i><i></i><Icon name="arrow-right" size={16} /></div><span>OUR EXPERTISE</span><p>One shared direction.</p></div>
+    </div>
+    <ol class="process-steps">
+      {onboardingSteps.map((step, index) => <li class="reveal-on-scroll"><span class="process-step-number">0{index + 1}</span><div><h3>{step.title}</h3><p>{step.description}</p></div></li>)}
+    </ol>
+  </div>
+</section>

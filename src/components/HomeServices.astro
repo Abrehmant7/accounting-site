@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import OrbitalAccent from './OrbitalAccent.astro';
+import { services } from '@/config/site';
+---
+<section id="expertise" class="home-services" aria-labelledby="services-heading">
+  <OrbitalAccent class="expertise-orbit" />
+  <div class="shell">
+    <div class="section-heading-row reveal-on-scroll">
+      <div><p class="section-kicker"><span>02 / OUR EXPERTISE</span><span class="kicker-rule" aria-hidden="true"></span></p><h2 id="services-heading">The detail, handled.<br /><span>The bigger picture, yours.</span></h2></div>
+      <div class="services-introduction"><p class="section-intro">A single process or an extension of your team. Choose the support that fits where you are, and where you’re heading.</p><a class="section-text-link" href="/contact/">Let’s find your fit<Icon name="arrow-up-right" size={16} /></a></div>
+    </div>
+    <div class="services-bento">
+      <article id="service-bookkeeping" class="service-tile service-bookkeeping reveal-on-scroll">
+        <div class="service-tile-top"><span class="service-number">01</span><span class="service-category">THE EVERYDAY, ELEVATED</span><Icon name="layers" size={19} /></div>
+        <div class="bookkeeping-content"><h3><a class="service-title-link" href={services[0].href}>Bookkeeping &<br />month-end close.<Icon name="arrow-up-right" size={16} /></a></h3><p>Transaction records, reconciliations, and a more orderly close. A solid foundation for everything that follows.</p><div class="service-tags"><span>Clean ledgers</span><span>Consistent close</span></div></div>
+        <div class="ledger-art" aria-hidden="true"><div class="ledger-sheet ledger-sheet-back"></div><div class="ledger-sheet ledger-sheet-front"><span class="ledger-art-label">A LITTLE MORE ORDER.</span><span class="ledger-art-title">Month-end, made clearer.</span><div><i></i><span>Transactions</span><b>01</b></div><div><i></i><span>Reconciliations</span><b>02</b></div><div><i></i><span>Close & review</span><b>03</b></div><span class="ledger-art-bottom">READY FOR THE BIGGER PICTURE <Icon name="arrow-up-right" size={12} /></span></div></div>
+      </article>
+      <article id="service-yearend" class="service-tile service-yearend reveal-on-scroll">
+        <div class="service-tile-top"><span class="service-number">02</span><span class="service-category">A CLEARER YEAR-END</span><span class="report-glyph" aria-hidden="true"><i></i><i></i><i></i></span></div>
+        <h3><a class="service-title-link" href={services[1].href}>Year-end accounts &<br />financial reporting.<Icon name="arrow-up-right" size={16} /></a></h3><p>Organised schedules and financial statements that bring the year into focus.</p><div class="service-tags"><span>Accounts preparation</span><span>Reporting</span></div>
+      </article>
+      <article id="service-management" class="service-tile service-management reveal-on-scroll">
+        <div class="service-tile-top"><span class="service-number">03</span><span class="service-category">LOOK AHEAD</span><Icon name="chart" size={19} /></div>
+        <h3><a class="service-title-link" href={services[2].href}>Management<br />accounts & FP&A.<Icon name="arrow-up-right" size={16} /></a></h3><p>Management reporting, cash-flow forecasts, and budget analysis to support your decisions.</p><div class="service-tags"><span>Forecasting</span><span>Business insight</span></div>
+      </article>
+      <article id="service-tax" class="service-tile service-tax reveal-on-scroll">
+        <div class="service-tile-top"><span class="service-number">04</span><span class="service-category">KEEP THINGS IN ORDER</span><span class="tax-glyph" aria-hidden="true">%</span></div>
+        <h3><a class="service-title-link" href={services[3].href}>VAT returns &<br />tax compliance.<Icon name="arrow-up-right" size={16} /></a></h3><p>VAT preparation and compliance support, coordinated with your advisers and filing calendar.</p><div class="service-tags"><span>VAT preparation</span><span>Deadline support</span></div>
+      </article>
+      <article id="service-payroll" class="service-tile service-payroll reveal-on-scroll">
+        <div class="service-tile-top"><span class="service-number">05</span><span class="service-category">PEOPLE COME FIRST</span><Icon name="people" size={19} /></div>
+        <h3><a class="service-title-link" href={services[4].href}>Payroll,<br />taken care of.<Icon name="arrow-up-right" size={16} /></a></h3><p>Recurring payroll processing and payslip support, with a consistent rhythm for your team.</p><div class="service-tags"><span>Payroll processing</span><span>Payslips</span></div>
+      </article>
+      <article id="service-teams" class="service-tile service-teams reveal-on-scroll">
+        <div class="dedicated-team-art" aria-hidden="true"><span>Y</span><span>+</span><span>F</span></div>
+        <div><div class="service-tile-top"><span class="service-number">06</span><span class="service-category">YOUR TEAM, EXTENDED</span></div><h3><a class="service-title-link" href={services[5].href}>Different desks. Same direction.</a></h3><p>Dedicated offshore finance professionals who work with your systems, follow your processes, and grow alongside your business.</p></div>
+        <a href={services[5].href} class="team-service-link">Explore dedicated teams <Icon name="arrow-up-right" size={16} /></a>
+      </article>
+    </div>
+    <div class="services-closing reveal-on-scroll"><p>You don’t have to outsource everything.<strong> Start with what would make the biggest difference.</strong></p><a href="/contact/">Let’s work it out together <Icon name="arrow-right" size={15} /></a></div>
+  </div>
+</section>
+

@@ -1,0 +1,122 @@
+@layer base {
+  /* Reserve the switch's space while the early theme script connects it. */
+  .theme-toggle[hidden] { display: inline-flex !important; visibility: hidden; }
+}
+
+@layer components {
+  .header-actions { display: flex; flex-shrink: 0; align-items: center; gap: 12px; }
+  .theme-toggle { display: inline-flex; width: 68px; min-height: 44px; align-items: center; justify-content: center; border-radius: 24px; }
+  .theme-toggle-track { position: relative; display: flex; width: 64px; height: 32px; align-items: center; justify-content: space-around; border: 1px solid #E2E5EE; border-radius: 20px; background: #F4F5F9; color: #9B93AB; }
+  .theme-toggle-track > svg { position: relative; z-index: 1; }
+  .theme-toggle-track > svg:first-of-type { color: #5E546F; }
+  .theme-toggle-thumb { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border: 1px solid #E9E6EF; border-radius: 50%; background: white; box-shadow: 0 2px 5px #3020470D; transition: transform 200ms ease; }
+  .theme-toggle:hover .theme-toggle-track { border-color: #BCADD3; }
+  .theme-toggle[aria-checked='true'] .theme-toggle-thumb { transform: translateX(32px); }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-canvas: #0E131F;
+  --color-surface: #151D2B;
+  --color-heading: #E8EDF6;
+  --color-muted: #A3AFC3;
+  --color-border: #2B3548;
+  --color-cobalt: #8CA5FF;
+  --color-cobalt-hover: #ACC0FF;
+  --color-lavender-soft: #2B2440;
+  --color-violet-ink: #BDA6E5;
+  --color-teal: #85C7C8;
+  --color-warm-canvas: #111722;
+  --shadow-float: 0 12px 40px -12px #0009;
+}
+
+/* Theme overrides also cover utility-styled shell controls and popovers. */
+  :root[data-theme='dark'] .site-header { background: #0E131FEE; }
+  :root[data-theme='dark'] .site-header.is-scrolled { box-shadow: 0 6px 24px -20px #000A; }
+  :root[data-theme='dark'] .site-header .site-logo { color: #E8EDF6; }
+  :root[data-theme='dark'] .site-header .logo-bars { fill: #0E131F; }
+  :root[data-theme='dark'] .desktop-navigation { border-color: #263044; background: #151C2B; }
+  :root[data-theme='dark'] :is(.services-dropdown, #mobile-navigation, .contact-popover, .icon-button) { border-color: var(--color-border); background: var(--color-surface); }
+  :root[data-theme='dark'] .service-menu-link[aria-current='page'], :root[data-theme='dark'] [data-mobile-services] [aria-current='page'] { color: #B8C7FF; background: #232C49; }
+  :root[data-theme='dark'] .header-cta { background: #2A3452; }
+  :root[data-theme='dark'] .header-cta:hover { background: #3C56C9; }
+  :root[data-theme='dark'] :is(.btn-primary, [aria-label='Quick consultation options']) { background: #3859D9; color: white; }
+  :root[data-theme='dark'] :is(.btn-primary, [aria-label='Quick consultation options']):hover { background: #496BEA; }
+  :root[data-theme='dark'] .theme-toggle-track { border-color: #364057; background: #20283B; color: #7C879F; }
+  :root[data-theme='dark'] .theme-toggle-thumb { border-color: #625777; background: #413753; }
+  :root[data-theme='dark'] .theme-toggle-track > svg:first-of-type { color: #8792A8; }
+  :root[data-theme='dark'] .theme-toggle-track > svg:last-of-type { color: #E3D7F8; }
+  :root[data-theme='dark'] :is(.home-hero, .home-services, .home-audience, .service-page, .service-scope, .service-related) { background: var(--color-canvas); }
+  :root[data-theme='dark'] .heading-period { color: var(--color-heading); }
+  :root[data-theme='dark'] .hero-forward > svg { color: #9D81B9; }
+  :root[data-theme='dark'] .scene-orbit-one { border-color: #3C3354; background: linear-gradient(135deg, #322747, #1E2540 55%, #2D2537); }
+  :root[data-theme='dark'] .scene-orbit-two { border-color: #66527F; }
+  :root[data-theme='dark'] .finance-scene::before { opacity: 0.25; }
+  :root[data-theme='dark'] :is(.workspace-board, .team-note, .close-note) { border-color: #343D54; background: #192235; box-shadow: 0 22px 55px -25px #0008; }
+  :root[data-theme='dark'] .workspace-topbar { border-color: #35405A; background: #25233A; color: #B9ADC9; }
+  :root[data-theme='dark'] .workspace-symbol > span { background: #D1D9EC; }
+  :root[data-theme='dark'] .workspace-symbol > span:nth-child(3) { background: #8CA5FF; }
+  :root[data-theme='dark'] :is(.workspace-icon, .workflow-step) { border-color: #3B4762; }
+  :root[data-theme='dark'] .chart-grid { border-color: #2C3850; background-image: linear-gradient(to bottom, transparent calc(100% - 1px), #2C3850 0); }
+  :root[data-theme='dark'] .chart-signal { stroke: #8CA5FF; }
+  :root[data-theme='dark'] .chart-lines > circle { fill: #8CA5FF; stroke: #192235; }
+  :root[data-theme='dark'] .chart-lines > path[stroke='#CBD5E1'] { stroke: #5F6F91; }
+  :root[data-theme='dark'] .workspace-workflow > div { color: #A9B8D0; }
+  :root[data-theme='dark'] .workspace-workflow > div .workflow-step { border-color: #4A4264; background: #2D2944; color: #BDA8E5; }
+  :root[data-theme='dark'] .workspace-bottom { border-color: #303B52; }
+  :root[data-theme='dark'] .note-dot { box-shadow: 0 0 0 4px #203835; }
+  :root[data-theme='dark'] .close-note-mark > span:first-child { background: #413554; }
+  :root[data-theme='dark'] .close-note-mark > span:last-child { background: #2C253D; }
+  :root[data-theme='dark'] :is(.hero-audience > div, .team-note p, .close-note p, .workspace-bottom, .chart-labels, .workspace-heading p, .finance-scene figcaption, .finance-scene figcaption > span) { color: #A0ACC1; }
+  :root[data-theme='dark'] :is(.outsourcing-value, .value-column + .value-column, .value-footnote) { border-color: #303547; }
+  :root[data-theme='dark'] .value-footnote { color: #ADA4BE; }
+  :root[data-theme='dark'] .value-index { color: #9D90AF; }
+  :root[data-theme='dark'] :is(.section-heading-row h2 > span, .home-services .section-heading-row h2 > span, .faq-introduction h2 > span, .contact-copy h2 > span) { color: #B4A0D1; }
+  :root[data-theme='dark'] .kicker-rule { background: #4C425E; }
+  :root[data-theme='dark'] :is(.service-yearend, .service-management, .service-tax, .service-payroll, .audience-card, .service-scope-card, .related-service-card) { border-color: #30364A; background: #181E2D; }
+  :root[data-theme='dark'] .service-bookkeeping { border-color: #4563D1; background: #2D47AB; }
+  :root[data-theme='dark'] .service-teams { border-color: #3E3554; background: linear-gradient(115deg, #272139, #1B2540); }
+  :root[data-theme='dark'] .service-tile:not(.service-bookkeeping) .service-category { color: #B5A0CF; }
+  :root[data-theme='dark'] .service-tile:not(.service-bookkeeping) p { color: #A3AFC3; }
+  :root[data-theme='dark'] .service-tile:not(.service-bookkeeping) .service-tags > span { color: #A4AFC4; border-color: #3A4256; }
+  :root[data-theme='dark'] .ledger-sheet-front { border-color: #46506F; background: #202A43; }
+  :root[data-theme='dark'] .ledger-sheet-back { background: #6D5A93; }
+  :root[data-theme='dark'] :is(.ledger-art-label, .ledger-sheet-front b, .ledger-art-bottom) { color: #A5AFCA; }
+  :root[data-theme='dark'] .ledger-art-bottom { border-color: #414A64; }
+  :root[data-theme='dark'] :is(.services-closing strong, .services-closing, .team-service-link) { color: #AEA0C3; }
+  :root[data-theme='dark'] :is(.audience-subtitle, .audience-card-top, .software-kicker) { color: #B3A0CD; }
+  :root[data-theme='dark'] :is(.audience-description, .software-band > div > p:last-child, .software-band ul, .faq-introduction > p:not(.section-kicker), .faq-answer p) { color: #A3AFC3; }
+  :root[data-theme='dark'] :is(.audience-detail, .software-band) { border-color: #31374A; color: #AEA1C1; }
+  :root[data-theme='dark'] .home-faq { background: #141926; border-color: #2D3447; }
+  :root[data-theme='dark'] :is(.faq-list, .faq-list details) { border-color: #36394E; }
+  :root[data-theme='dark'] :is(.faq-number, .faq-toggle) { color: #B5A0CF; }
+  :root[data-theme='dark'] .home-contact { background: radial-gradient(ellipse at 0 100%, #2B223D, transparent 65%), linear-gradient(135deg, #161B2A, #192137); }
+  :root[data-theme='dark'] .contact-copy > p:not(.section-kicker) { color: #A8B0C5; }
+  :root[data-theme='dark'] .contact-expectation { border-color: #635077; }
+  :root[data-theme='dark'] :is(.contact-expectation h3, .contact-direct) { color: #C2AEDB; }
+  :root[data-theme='dark'] :is(.contact-expectation > span, .contact-expectation > p, .contact-form-heading > span, .form-privacy, .enquiry-status) { color: #AEA0BF; }
+  :root[data-theme='dark'] .contact-form-panel { border-color: #3A3550; background: #191F2E; box-shadow: 0 15px 50px -35px #000A; }
+  :root[data-theme='dark'] .form-field label { color: #B8C1D3; }
+  :root[data-theme='dark'] .field-optional { color: #9A90AA; }
+  :root[data-theme='dark'] .form-field :is(input, select, textarea) { border-color: #3A3F56; background: #111827; color: #E2E8F4; }
+  :root[data-theme='dark'] .form-field :is(input, textarea)::placeholder { color: #8591A7; }
+  :root[data-theme='dark'] .form-field :is(input, select, textarea):hover { border-color: #8F7AAE; }
+  :root[data-theme='dark'] .enquiry-status[data-state='error'] { color: #FDA4B7; }
+  :root[data-theme='dark'] .enquiry-status[data-state='success'] { color: #B8D8D0; }
+  :root[data-theme='dark'] :is(.service-outcome-band, .service-jump-nav, .service-delivery) { border-color: #30364B; background: #141A28; }
+  :root[data-theme='dark'] .service-outcomes li { border-color: #30364B; }
+  :root[data-theme='dark'] :is(.service-outcomes p, .service-fit p, .service-jump-nav a, .service-text-link, .delivery-intro, .deliverables-panel li > p, .scope-note > p, .related-service-card p) { color: #ADB6C9; }
+  :root[data-theme='dark'] .service-fit { border-color: #36384E; }
+  :root[data-theme='dark'] :is(.deliverables-panel, .deliverables-panel li, .deliverables-heading, .scope-note) { border-color: #36394E; }
+  :root[data-theme='dark'] .deliverables-panel { background: #191F2E; }
+  :root[data-theme='dark'] .deliverables-heading { background: #28233A; color: #B9A3D7; }
+  :root[data-theme='dark'] .scope-note { background: #1C1C2D; }
+  :root[data-theme='dark'] .related-service-card:hover { background: #272239; border-color: #79638F; }
+  :root[data-theme='dark'] .service-cta { border-color: #3C3450; background: linear-gradient(115deg, #282139, #1B2540); }
+  :root[data-theme='dark'] .service-cta p:not(.section-kicker) { color: #B2A5C4; }
+  :root[data-theme='dark'] .service-title-link:hover { color: #C8B5E8; }
+  :root[data-theme='dark'] .orbital-accent { color: #B19ACF; opacity: 0.17; }
+
+@media (width < 40rem) {
+  .header-actions { gap: 7px; }
+}

@@ -1,0 +1,49 @@
+---
+import Icon from './Icon.astro';
+---
+<figure class="finance-scene hero-enter hero-enter-visual" aria-labelledby="workspace-caption">
+  <div class="scene-orbit scene-orbit-one" aria-hidden="true"></div>
+  <div class="scene-orbit scene-orbit-two" aria-hidden="true"></div>
+  <div class="scene-cross scene-cross-one" aria-hidden="true">+</div>
+  <div class="scene-cross scene-cross-two" aria-hidden="true">+</div>
+  <div class="scene-coordinate" aria-hidden="true">CONNECTED BY DESIGN</div>
+  <div class="team-note">
+    <span class="team-note-icon"><Icon name="people" size={18} /></span>
+    <div><p>Your people. Your processes.</p><strong>One connected team.</strong></div>
+    <span class="note-dot" aria-hidden="true"></span>
+  </div>
+  <div class="workspace-board">
+    <div class="workspace-topbar">
+      <span class="workspace-symbol" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>Finance workspace</span><span class="workspace-dots" aria-hidden="true">···</span>
+    </div>
+    <div class="workspace-content">
+      <div class="workspace-heading"><div><p>THE BIGGER PICTURE</p><h2>Everything, in perspective.</h2></div><span class="workspace-icon"><Icon name="arrow-up-right" size={18} /></span></div>
+      <div class="workspace-chart" aria-hidden="true">
+        <div class="chart-grid"></div>
+        <svg viewBox="0 0 360 145" fill="none" class="chart-lines">
+          <defs><linearGradient id="chart-fill" x1="0" y1="0" x2="0" y2="145" gradientUnits="userSpaceOnUse"><stop stop-color="#2563EB" stop-opacity="0.14" /><stop offset="1" stop-color="#2563EB" stop-opacity="0" /></linearGradient></defs>
+          <path d="M0 119C31 119 25 97 55 97S88 110 112 84S145 97 172 66S201 74 226 48S257 66 285 34S320 51 360 12V145H0Z" fill="url(#chart-fill)" />
+          <path d="M0 127C36 127 47 119 77 121S106 104 140 109S179 84 211 91S243 72 274 79S314 58 360 61" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 5" />
+          <path class="chart-signal" d="M0 119C31 119 25 97 55 97S88 110 112 84S145 97 172 66S201 74 226 48S257 66 285 34S320 51 360 12" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" pathLength="1" />
+          <circle cx="360" cy="12" r="5" fill="#2563EB" stroke="white" stroke-width="3" />
+        </svg>
+        <div class="chart-labels"><span>THE DETAILS</span><span>THE DIRECTION <Icon name="arrow-up-right" size={10} /></span></div>
+      </div>
+      <div class="workspace-workflow">
+        <div><span class="workflow-step">01</span><span>Record</span></div>
+        <Icon name="arrow-right" size={12} class="workflow-arrow" />
+        <div><span class="workflow-step">02</span><span>Reconcile</span></div>
+        <Icon name="arrow-right" size={12} class="workflow-arrow" />
+        <div><span class="workflow-step">03</span><span>Report</span></div>
+      </div>
+      <div class="workspace-bottom"><span class="sync-dot"></span><span>The detail is taken care of.</span><Icon name="layers" size={15} /></div>
+    </div>
+  </div>
+  <div class="close-note">
+    <span class="close-note-mark" aria-hidden="true"><span></span><span></span></span>
+    <div><p>Month-end close</p><strong>Ready for your next move.</strong></div>
+    <span class="close-note-arrow"><Icon name="arrow-up-right" size={17} /></span>
+  </div>
+  <figcaption id="workspace-caption">A clearer view. A connected workflow. <span>Illustrative overview</span></figcaption>
+</figure>

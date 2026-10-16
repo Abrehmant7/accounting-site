@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import accountingPhoto from '@/assets/accounting-workspace.jpg';
+import ownerPhoto from '@/assets/business-owner.jpg';
+import collaborationPhoto from '@/assets/business-collaboration.jpg';
+import '@/styles/audience-photography.css';
+import Icon from './Icon.astro';
+import { audiences } from '@/data/home';
+import { audienceProfiles } from '@/data/company';
+const audiencePhotos = [accountingPhoto, ownerPhoto, collaborationPhoto];
+---
+<section id="who-we-serve" class="home-audience" aria-labelledby="audience-heading">
+  <div class="shell">
+    <div class="section-heading-row reveal-on-scroll"><div><p class="section-kicker"><span>04 / BUILT AROUND YOU</span><span class="kicker-rule" aria-hidden="true"></span></p><h2 id="audience-heading">Different businesses.<br /><span>Shared ambition.</span></h2></div><p class="section-intro">Wherever you are in your journey, the right finance support should feel like a natural part of your business.</p></div>
+    <div class="audience-cards">
+      {audiences.map((audience, index) => (
+        <article class="audience-card audience-card--photo reveal-on-scroll">
+          <Image
+            src={audiencePhotos[index]}
+            alt=""
+            aria-hidden="true"
+            format="webp"
+            width={768}
+            widths={[480, 768]}
+            sizes="(max-width: 639px) calc(100vw - 32px), (max-width: 1264px) calc((100vw - 80px) / 3), 395px"
+            loading="lazy"
+            decoding="async"
+            class="audience-card-photo"
+          />
+          <span class="audience-card-veil" aria-hidden="true"></span>
+          <div class="audience-card-content">
+            <div class="audience-card-top"><span>{audience.number}</span><Icon name={audience.icon} size={23} /></div>
+            <p class="audience-subtitle">{audience.subtitle}</p>
+            <h3><a class="audience-profile-link" href={`/who-we-serve/#${audienceProfiles[index].id}`}>{audience.title}<Icon name="arrow-up-right" size={15} /></a></h3>
+            <p class="audience-description">{audience.description}</p>
+            <div class="audience-detail"><span aria-hidden="true"></span><p>{audience.detail}</p></div>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="software-band reveal-on-scroll"><div><p class="software-kicker">FAMILIAR TOOLS. A CONNECTED WAY OF WORKING.</p><h3>Your systems belong in the conversation.</h3><p>We plan the workflow around your setup. Tell us what you use.</p></div><ul aria-label="Accounting software to discuss"><li>Xero</li><li>QuickBooks</li><li>Sage</li></ul></div>
+  </div>
+</section>

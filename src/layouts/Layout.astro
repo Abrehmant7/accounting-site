@@ -1,0 +1,76 @@
+---
+import '@/styles/global.css';
+import '@/styles/theme.css';
+import '@/styles/featured-cards.css';
+import { siteConfig } from '@/config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  noindex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = 'Finance & Accounting Outsourcing',
+  description = siteConfig.description,
+  image = '/og-default.png',
+  imageAlt = `${siteConfig.name} — Finance & Accounting Outsourcing`,
+  noindex = false,
+  structuredData,
+} = Astro.props;
+const origin = Astro.site ?? new URL('https://example.com');
+const canonical = new URL(Astro.url.pathname, origin);
+const socialImage = new URL(image, origin);
+const pageTitle = `${title} | ${siteConfig.name}`;
+const isPlaceholderDomain = origin.hostname === 'example.com' || origin.hostname.endsWith('.example.com');
+const shouldIndex = siteConfig.allowIndexing && !isPlaceholderDomain && !noindex;
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': new URL('/#organization', origin).href, name: siteConfig.name, url: origin.href, ...(siteConfig.contact.email ? { email: siteConfig.contact.email } : {}), ...(siteConfig.contact.phone ? { telephone: siteConfig.contact.phone } : {}) },
+    { '@type': 'WebSite', '@id': new URL('/#website', origin).href, url: origin.href, name: siteConfig.name, inLanguage: 'en-GB', publisher: { '@id': new URL('/#organization', origin).href } },
+    ...(structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : []),
+  ],
+};
+---
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0B0F17" />
+    <script is:inline src="/theme.js"></script>
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={shouldIndex ? 'index, follow' : 'noindex, nofollow'} />
+    <link rel="canonical" href={canonical.href} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={socialImage.href} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage.href} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-dvh flex-col">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <slot />
+    <script>import '@/scripts/disclosures';</script>
+  </body>
+</html>

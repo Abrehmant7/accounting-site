@@ -1,0 +1,10 @@
+---
+import Icon from './Icon.astro';
+import OrbitalAccent from './OrbitalAccent.astro';
+interface Props { title: string; description: string; secondaryLabel: string; secondaryHref: string; }
+const { title, description, secondaryLabel, secondaryHref } = Astro.props;
+---
+<section class="company-cta" aria-labelledby="company-cta-heading">
+  <OrbitalAccent class="company-cta-orbit" />
+  <div class="shell company-cta-layout reveal-on-scroll"><div><p class="company-kicker">THE NEXT CONVERSATION</p><h2 id="company-cta-heading">{title}</h2><p>{description}</p></div><div class="company-cta-actions"><a href="/contact/" class="btn-primary">Start a conversation<Icon name="arrow-up-right" size={17} /></a><a href={secondaryHref} class="company-text-link">{secondaryLabel}<Icon name="arrow-right" size={16} /></a></div></div>
+</section>

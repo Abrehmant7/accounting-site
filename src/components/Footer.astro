@@ -1,0 +1,48 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { siteConfig, services, companyLinks } from '@/config/site';
+const { contact } = siteConfig;
+const phoneHref = contact.phone.replace(/[^\d+]/g, '');
+const year = new Date().getUTCFullYear();
+---
+<footer class="site-footer bg-midnight text-white">
+  <div class="shell">
+    <div class="footer-invitation reveal-on-scroll">
+      <div><p class="footer-eyebrow"><span></span>A little clarity goes a long way</p><h2>Make room for<br /><span>what’s next.</span></h2></div>
+      <a href="/contact/" class="footer-conversation" aria-label="Start a conversation"><span>It starts with<br /><strong>a conversation.</strong></span><span class="footer-arrow"><Icon name="arrow-up-right" size={29} /></span></a>
+      <svg class="footer-orbit" viewBox="0 0 340 240" fill="none" aria-hidden="true"><ellipse cx="170" cy="120" rx="160" ry="62" transform="rotate(-35 170 120)" stroke="currentColor" /><ellipse cx="170" cy="120" rx="160" ry="82" transform="rotate(-35 170 120)" stroke="currentColor" /><ellipse cx="170" cy="120" rx="160" ry="102" transform="rotate(-35 170 120)" stroke="currentColor" /></svg>
+    </div>
+    <div class="footer-columns reveal-on-scroll">
+      <div class="footer-brand">
+        <Logo inverse />
+        <p>Expertise in the details.<br />Perspective for the bigger picture.</p>
+        <div class="footer-location"><Icon name="globe" size={13} />Supporting ambition, across borders.</div>
+      </div>
+      <nav aria-label="Footer services" class="footer-expertise">
+        <h2 class="footer-heading">Our expertise</h2>
+        <ul>{services.map((service) => <li><a class="footer-link" href={service.href}>{service.label}</a></li>)}</ul>
+      </nav>
+      <nav aria-label="Footer company">
+        <h2 class="footer-heading">The company</h2>
+        <ul>{companyLinks.map((link) => <li><a class="footer-link" href={link.navigationHref}>{link.label}</a></li>)}</ul>
+        <a href="/faq/#security-data" class="footer-security"><Icon name="shield" size={13} />Security & compliance</a>
+      </nav>
+      <div class="footer-contact">
+        <h2 class="footer-heading">Say hello</h2>
+        <p>Tell us where you want to go.<br />We’ll talk about how to get there.</p>
+        <address class="not-italic">
+          <div><Icon name="mail" size={15} />{contact.email ? <a class="break-all hover:text-white" href={`mailto:${contact.email}`}>{contact.email}</a> : <span>Email coming soon</span>}</div>
+          <div><Icon name="phone" size={15} />{contact.phone ? <a class="hover:text-white" href={`tel:${phoneHref}`}>{contact.phone}</a> : <span>Phone coming soon</span>}</div>
+        </address>
+        {contact.email ? <a href={`mailto:${contact.email}`} class="footer-contact-link">Start a conversation <Icon name="arrow-up-right" size={14} /></a> : <span class="footer-contact-pending"><span></span>Contact details being finalized</span>}
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© {year} {siteConfig.name}. All rights reserved.</p>
+      <div><span aria-disabled="true" title="Terms page coming soon">Terms & conditions</span><a href="/faq/#question-enquiry-data">Data protection</a><span class="footer-signoff">Clear numbers. Open possibilities.<Icon name="arrow-up-right" size={12} /></span></div>
+    </div>
+  </div>
+</footer>
+<script>import '@/scripts/motion';</script>
+

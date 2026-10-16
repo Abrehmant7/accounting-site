@@ -1,0 +1,18 @@
+---
+import type { ServicePage } from '@/data/services';
+interface Props { service: ServicePage; }
+const { service } = Astro.props;
+---
+<div class:list={['service-signature', `signature-${service.visual}`]} aria-hidden="true">
+  <span class="signature-number">{service.number}</span>
+  <svg viewBox="0 0 520 340" fill="none" focusable="false">
+    <g stroke="currentColor" stroke-width="1">
+      {service.visual === 'ledger' && <><path d="M75 245H175V200H265V150H355V95H445" class="signature-stroke" pathLength="1" /><path d="M75 275H205V230H295V180H385V125H445M75 215H145V170H235V120H325V65H445" opacity=".45" /><path d="M105 45V295M205 45V295M305 45V295M405 45V295" opacity=".16" />{[[175,200],[265,150],[355,95]].map(([cx,cy])=><circle cx={cx} cy={cy} r="5" fill="currentColor" stroke="none" />)}</>}
+      {service.visual === 'report' && <><path d="M95 275V175H145V275M185 275V130H235V275M275 275V155H325V275M365 275V65H415V275" class="signature-stroke" pathLength="1" /><path d="M70 290H445M70 205H445M70 120H445" opacity=".2" /><path d="M120 145L210 100L300 115L390 35" stroke-dasharray="3 7" /><circle cx="390" cy="35" r="5" fill="currentColor" stroke="none" /></>}
+      {service.visual === 'forecast' && <><path d="M50 265C110 270 120 210 175 220S240 135 300 153S380 80 465 55" class="signature-stroke" pathLength="1" /><path d="M300 153C360 165 400 145 465 150M300 153C365 205 400 220 465 240" opacity=".5" stroke-dasharray="4 7" /><path d="M50 290H470M50 210H470M50 130H470M50 50H470M300 30V300" opacity=".15" /><circle cx="300" cy="153" r="7" fill="currentColor" stroke="none" /></>}
+      {service.visual === 'calendar' && <><ellipse cx="260" cy="170" rx="180" ry="108" transform="rotate(-24 260 170)" /><ellipse cx="260" cy="170" rx="145" ry="145" transform="rotate(-24 260 170)" opacity=".4" />{[0,1,2].map(row=>[0,1,2,3,4].map(col=><circle cx={160+col*50} cy={115+row*55} r={row===1&&col===2?9:2} fill={row===1&&col===2?'currentColor':'none'} />))}<path d="M80 280L440 55" opacity=".25" /><circle cx="419" cy="76" r="5" fill="currentColor" stroke="none" /></>}
+      {service.visual === 'payroll' && <><path d="M55 120H175C235 120 235 220 295 220H465M55 170H175C235 170 235 170 295 170H465M55 220H175C235 220 235 120 295 120H465" class="signature-stroke" pathLength="1" /><path d="M55 90H175C235 90 235 250 295 250H465M55 250H175C235 250 235 90 295 90H465" opacity=".3" />{[120,170,220].map(cy=><><circle cx="55" cy={cy} r="5" fill="currentColor" stroke="none" /><circle cx="465" cy={cy} r="5" /></>)}</>}
+      {service.visual === 'team' && <><path d="M260 170L95 80M260 170L95 260M260 170L425 80M260 170L425 260M260 170V40M260 170V300" class="signature-stroke" pathLength="1" /><circle cx="260" cy="170" r="39" /><circle cx="260" cy="170" r="66" opacity=".25" />{[[95,80],[95,260],[425,80],[425,260],[260,40],[260,300]].map(([cx,cy])=><><circle cx={cx} cy={cy} r="13" /><circle cx={cx} cy={cy} r="3" fill="currentColor" stroke="none" /></>)}<ellipse cx="260" cy="170" rx="211" ry="125" opacity=".15" /></>}
+    </g>
+  </svg>
+</div>

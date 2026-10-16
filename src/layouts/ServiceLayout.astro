@@ -1,0 +1,67 @@
+---
+import Layout from './Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import FloatingContact from '@/components/FloatingContact.astro';
+import ServiceVisual from '@/components/ServiceVisual.astro';
+import OrbitalAccent from '@/components/OrbitalAccent.astro';
+import Icon from '@/components/Icon.astro';
+import { servicePages, type ServicePage } from '@/data/services';
+import '@/styles/home-sections.css';
+import '@/styles/home-completion.css';
+import '@/styles/home-motion.css';
+import '@/styles/service-pages.css';
+import '@/styles/service-hero.css';
+interface Props { service: ServicePage; }
+const { service } = Astro.props;
+const consultationHref = `/contact/?service=${service.slug}#enquiry`;
+const origin = Astro.site ?? new URL('https://example.com');
+const serviceIndex = servicePages.findIndex(page => page.slug === service.slug);
+const related = [1, 2, 3].map(offset => servicePages[(serviceIndex + offset) % servicePages.length]);
+const schema = [
+  { '@type': 'Service', '@id': new URL(`${service.href}#service`, origin).href, name: service.label, description: service.meta, url: new URL(service.href, origin).href, provider: { '@id': new URL('/#organization', origin).href } },
+  { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: origin.href }, { '@type': 'ListItem', position: 2, name: service.label, item: new URL(service.href, origin).href }] },
+  { '@type': 'FAQPage', mainEntity: service.faqs.map(faq => ({ '@type': 'Question', name: faq.question, acceptedAnswer: { '@type': 'Answer', text: faq.answer } })) },
+];
+---
+<Layout title={service.label} description={service.meta} structuredData={schema}>
+  <Header />
+  <main id="main-content" class="service-page" tabindex="-1">
+    <section class="service-hero" aria-labelledby="service-heading">
+      <div class="shell service-masthead">
+        <nav class="service-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#expertise">Services</a><span aria-hidden="true">/</span><span aria-current="page">{service.label}</span></nav>
+        <div class="service-masthead-meta hero-enter"><p><span>OUR EXPERTISE</span><span class="masthead-divider" aria-hidden="true"></span> SERVICE {service.number}</p><div class="service-index" aria-label={`Service ${service.number} of 6`}>{servicePages.map(page => <span class:list={{'is-current':page.slug === service.slug}} aria-hidden="true"></span>)}</div></div>
+        <div class="service-title-stage">
+          <ServiceVisual service={service} />
+          <h1 id="service-heading" class="hero-enter hero-enter-heading">{service.label}</h1>
+        </div>
+        <div class="service-masthead-bottom">
+          <div class="service-masthead-promise hero-enter hero-enter-description"><span class="masthead-small-label">THE DIFFERENCE IN THE EVERYDAY</span><p>{service.title}<br /><span>{service.accent}</span></p></div>
+          <div class="service-masthead-summary hero-enter hero-enter-actions"><p>{service.description}</p><div class="service-hero-actions"><a href={consultationHref} class="btn-primary">Let’s talk about your needs<Icon name="arrow-up-right" size={17} /></a><a href="#scope" class="service-text-link">Explore the scope<Icon name="arrow-right" size={16} /></a></div></div>
+        </div>
+        <div class="service-masthead-track hero-enter hero-enter-assurance"><span>THE WORK, CONNECTED</span><ol>{service.boardRows.map((row,index)=><li><span>0{index+1}</span>{row}{index<2 && <Icon name="arrow-right" size={13} />}</li>)}</ol><span class="masthead-track-note">A workflow shaped around you.</span></div>
+      </div>
+      <div class="service-outcome-band"><div class="shell"><ul class="service-outcomes" aria-label="What the service is designed around">{service.outcomes.map((outcome, index) => <li><span>0{index + 1}</span><p>{outcome}</p></li>)}</ul></div></div>
+    </section>
+    <nav class="service-jump-nav" aria-label="On this page"><div class="shell"><span>A CLOSER LOOK</span><a href="#scope">What we cover</a><a href="#workflow">How it works</a><a href="#delivery">What you receive</a><a href="#questions">FAQs</a></div></nav>
+    <section id="scope" class="service-scope" aria-labelledby="scope-heading">
+      <div class="shell">
+        <div class="section-heading-row reveal-on-scroll"><div><p class="section-kicker"><span>01 / THE SCOPE</span><span class="kicker-rule" aria-hidden="true"></span></p><h2 id="scope-heading">{service.scopeTitle}</h2></div><p class="section-intro">{service.scopeIntro}</p></div>
+        <div class="service-scope-grid">{service.scope.map((item, index) => <article class:list={['service-scope-card reveal-on-scroll', { 'featured-card': index === 0 }]}><span class="scope-card-index">0{index + 1}</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div>
+        <div class="service-fit reveal-on-scroll"><span>WHERE IT FITS</span><p>{service.fit}</p><Icon name="arrow-up-right" size={20} /></div>
+      </div>
+    </section>
+    <section id="workflow" class="service-workflow" aria-labelledby="workflow-heading">
+      <OrbitalAccent class="service-workflow-orbit" />
+      <div class="shell"><div class="service-workflow-heading reveal-on-scroll"><p class="section-kicker"><span>02 / THE CONNECTION</span><span class="kicker-rule" aria-hidden="true"></span></p><h2 id="workflow-heading">{service.processTitle}</h2></div><ol class="service-workflow-grid">{service.steps.map((step, index) => <li class="reveal-on-scroll"><div class="workflow-number"><span>0{index + 1}</span><Icon name="arrow-right" size={19} /></div><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></div>
+    </section>
+    <section id="delivery" class="service-delivery" aria-labelledby="delivery-heading">
+      <div class="shell service-delivery-layout"><div class="reveal-on-scroll"><p class="section-kicker"><span>03 / THE HANDOVER</span><span class="kicker-rule" aria-hidden="true"></span></p><h2 id="delivery-heading">{service.deliveryTitle}</h2><p class="delivery-intro">{service.deliveryIntro}</p><a href={consultationHref} class="service-text-link">Discuss your requirements<Icon name="arrow-up-right" size={16} /></a></div><div class="deliverables-panel reveal-on-scroll"><div class="deliverables-heading"><Icon name="layers" size={18} /><span>YOUR AGREED OUTPUTS</span><span>{service.number} /</span></div><ul>{service.deliverables.map((item, index) => <li><span>0{index + 1}</span><p>{item}</p></li>)}</ul><div class="scope-note"><span>AGREEING THE DETAIL</span><p>{service.boundary}</p></div></div></div>
+    </section>
+    <section id="questions" class="home-faq service-faq" aria-labelledby="service-faq-heading"><div class="shell faq-layout"><div class="faq-introduction reveal-on-scroll"><p class="section-kicker"><span>04 / A LITTLE MORE CLARITY</span><span class="kicker-rule" aria-hidden="true"></span></p><h2 id="service-faq-heading">Good questions.<br /><span>A clearer starting point.</span></h2><p>A few details to help you explore whether this is the right fit.</p><a href={consultationHref} class="section-text-link">Talk through your questions<Icon name="arrow-up-right" size={16} /></a></div><div class="faq-list reveal-on-scroll">{service.faqs.map((faq, index) => <details name="service-faq"><summary><span class="faq-number">0{index + 1}</span><h3>{faq.question}</h3><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>{faq.answer}</p></div></details>)}</div></div></section>
+    <section class="service-related" aria-labelledby="related-heading"><div class="shell"><div class="service-related-heading reveal-on-scroll"><div><p class="section-kicker">THE BIGGER PICTURE</p><h2 id="related-heading">More ways to move forward.</h2></div><a href="/#expertise" class="service-text-link">View all services<Icon name="arrow-right" size={16} /></a></div><div class="service-related-grid">{related.map((page, index) => <a class:list={['related-service-card reveal-on-scroll', { 'featured-card': index === 0 }]} href={page.href}><span>{page.number} / EXPLORE THE CONNECTION<Icon name="arrow-up-right" size={18} /></span><h3>{page.label}</h3><p>{page.title} {page.accent}</p></a>)}</div></div></section>
+    <section class="service-cta" aria-labelledby="service-cta-heading"><OrbitalAccent class="service-cta-orbit" /><div class="shell reveal-on-scroll"><div><p class="section-kicker">YOUR NEXT STEP</p><h2 id="service-cta-heading">{service.cta}</h2><p>Tell us where the work needs support. We’ll explore the fit together.</p></div><a href={consultationHref} class="btn-primary">Start a conversation<Icon name="arrow-up-right" size={18} /></a></div></section>
+  </main>
+  <Footer />
+  <FloatingContact />
+</Layout>

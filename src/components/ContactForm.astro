@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+import '@/styles/contact-form.css';
+import { services } from '@/config/site';
+interface Props { id?: string; prefix?: string; headingLevel?: 'h2' | 'h3'; class?: string; }
+const { id = 'home-enquiry', prefix = 'enquiry', headingLevel: Heading = 'h3', class: className } = Astro.props;
+const isConfigured = Boolean(import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY?.trim());
+---
+<div class:list={['contact-form-panel', className]}>
+  <form id={id} data-contact-form data-configured={String(isConfigured)} method="post" action="https://api.web3forms.com/submit" aria-describedby={`${prefix}-status`}>
+    <div class="contact-form-heading"><Heading>A conversation starts here.</Heading><span>NO OBLIGATION</span></div>
+    <div class="form-grid"><div class="form-field"><label for={`${prefix}-name`}>Your name <span aria-hidden="true">*</span></label><input id={`${prefix}-name`} name="name" autocomplete="name" required maxlength="120" placeholder="Alex Morgan" /></div><div class="form-field"><label for={`${prefix}-email`}>Work email <span aria-hidden="true">*</span></label><input id={`${prefix}-email`} name="email" type="email" autocomplete="email" required maxlength="254" placeholder="alex@company.com" /></div></div>
+    <div class="form-field"><label for={`${prefix}-company`}>Company <span class="field-optional">(optional)</span></label><input id={`${prefix}-company`} name="company" autocomplete="organization" maxlength="180" placeholder="Your business or practice" /></div>
+    <div class="form-field"><label for={`${prefix}-service`}>What would you like help with? <span class="field-optional">(optional)</span></label><select id={`${prefix}-service`} name="service"><option value="">Let’s work it out together</option>{services.map(service => <option value={service.label}>{service.label}</option>)}</select></div>
+    <div class="form-field"><label for={`${prefix}-message`}>A little about what you need <span aria-hidden="true">*</span></label><textarea id={`${prefix}-message`} name="message" rows="3" required maxlength="5000" placeholder="Tell us what’s keeping your team busy…"></textarea></div>
+    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+    <button class="btn-primary enquiry-submit" type="submit" disabled><span data-submit-label>Send your enquiry</span><Icon name="arrow-up-right" size={17} /></button>
+    <p class="form-privacy">Your details are used to respond to your enquiry. <a href="/faq/#question-enquiry-data">About your information</a></p>
+    <p id={`${prefix}-status`} data-enquiry-status class="enquiry-status" role="status" aria-live="polite" aria-atomic="true">{!isConfigured && 'Enquiries will open soon. Thank you for your interest.'}</p>
+    <noscript><p class="enquiry-status">Please enable JavaScript to use this form.</p></noscript>
+  </form>
+</div>
+<script>import '@/scripts/contact-form';</script>

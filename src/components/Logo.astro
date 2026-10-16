@@ -1,0 +1,13 @@
+---
+import { siteConfig } from '@/config/site';
+interface Props { inverse?: boolean; }
+const { inverse = false } = Astro.props;
+---
+<a href="/" class:list={['site-logo inline-flex shrink-0 items-center gap-2.5', inverse ? 'text-white' : 'text-midnight']} aria-label={`${siteConfig.name} — home`}>
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <rect width="32" height="32" rx="9" fill="currentColor" />
+    <path class="logo-bars" d="M9 21V11h4v10H9Zm6 0V15h4v6h-4Zm6 0V8h3v13h-3Z" fill={inverse ? '#0B0F17' : '#FFFFFF'} />
+    <path d="M21 8h3v5h-3z" fill="#10B981" />
+  </svg>
+  <span class="text-[1.125rem] font-bold tracking-[-0.055em]">{siteConfig.name}<span class="text-cobalt">.</span></span>
+</a>

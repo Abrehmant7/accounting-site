@@ -1,0 +1,10 @@
+---
+import Icon from './Icon.astro';
+import { homeFaqs } from '@/data/home';
+---
+<section id="questions" class="home-faq" aria-labelledby="faq-heading">
+  <div class="shell faq-layout">
+    <div class="faq-introduction reveal-on-scroll"><p class="section-kicker"><span>05 / A LITTLE MORE CLARITY</span><span class="kicker-rule" aria-hidden="true"></span></p><h2 id="faq-heading">Good questions.<br /><span>Clear answers.</span></h2><p>Choosing a finance partner is a considered decision. Here’s a helpful place to start.</p><a href="/contact/" class="section-text-link">Have something else in mind?<Icon name="arrow-up-right" size={16} /></a></div>
+    <div class="faq-list reveal-on-scroll">{homeFaqs.map((faq, index) => <details id={faq.id} name="home-faq"><summary><span class="faq-number">0{index + 1}</span><h3>{faq.question}</h3><span class="faq-toggle" aria-hidden="true"></span></summary><div class="faq-answer"><p>{faq.answer}</p></div></details>)}</div>
+  </div>
+</section>

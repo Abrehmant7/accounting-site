@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F8FAFC"/>
+  <rect x="40" y="40" width="1120" height="550" rx="28" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <rect x="100" y="100" width="58" height="58" rx="15" fill="#0B0F17"/>
+  <path d="M115 139v-22h7v22h-7Zm12 0v-13h7v13h-7Zm12 0v-29h5v29h-5Z" fill="#FFFFFF"/>
+  <path d="M139 110h5v9h-5Z" fill="#10B981"/>
+  <text x="100" y="236" fill="#2563EB" font-family="Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="3">A MODERN APPROACH</text>
+  <text x="96" y="332" fill="#0F172A" font-family="Arial,sans-serif" font-size="72" font-weight="700" letter-spacing="-3">Finance &amp;</text>
+  <text x="96" y="414" fill="#0F172A" font-family="Arial,sans-serif" font-size="72" font-weight="700" letter-spacing="-3">Accounting Outsourcing.</text>
+  <path d="M100 468h1000" stroke="#E2E8F0"/>
+  <circle cx="106" cy="511" r="5" fill="#10B981"/>
+  <text x="126" y="518" fill="#64748B" font-family="Arial,sans-serif" font-size="21">Clarity for the way forward.</text>
+</svg>

@@ -1,0 +1,26 @@
+---
+import CompanyLayout from '@/layouts/CompanyLayout.astro';
+import ContactForm from '@/components/ContactForm.astro';
+import Icon from '@/components/Icon.astro';
+import { siteConfig } from '@/config/site';
+import '@/styles/support-pages.css';
+const { contact } = siteConfig;
+const channels = [
+  { label: 'Email', icon: 'mail' as const, detail: contact.email || 'Email details coming soon', href: contact.email ? `mailto:${contact.email}` : '', external: false },
+  { label: 'Phone', icon: 'phone' as const, detail: contact.phone || 'Phone details coming soon', href: contact.phone ? `tel:${contact.phone.replace(/[^\d+]/g, '')}` : '', external: false },
+  { label: 'WhatsApp', icon: 'chat' as const, detail: contact.whatsapp ? 'Start a WhatsApp conversation' : 'WhatsApp details coming soon', href: contact.whatsapp ? `https://wa.me/${contact.whatsapp}` : '', external: true },
+];
+const nextSteps = [
+  { number: '01', title: 'A short introduction.', description: 'Share the work you need help with, your systems, and what is getting in the way.' },
+  { number: '02', title: 'A practical conversation.', description: 'Explore the workload, your priorities, and the support that could fit your business.' },
+  { number: '03', title: 'An agreed way forward.', description: 'Confirm scope, responsibilities, commercial terms, and a handover plan before work begins.' },
+];
+---
+<CompanyLayout title="Contact Us" description="Start a conversation about bookkeeping, reporting, payroll, compliance preparation, or a dedicated offshore finance team. Tell us where your business needs support." pageType="ContactPage">
+  <section class="contact-page-hero" aria-labelledby="contact-page-heading"><div class="shell"><nav class="company-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Contact us</span></nav><div class="contact-page-layout">
+    <div class="contact-page-copy"><p class="company-kicker hero-enter">CONTACT / LET’S CONNECT</p><h1 id="contact-page-heading" class="hero-enter hero-enter-heading">A conversation.<br /><span>A clearer way forward.</span></h1><p class="company-hero-intro hero-enter hero-enter-description">Tell us a little about your business and where the work needs support. You don’t need a finished brief to get started.</p><div class="contact-channels hero-enter hero-enter-actions"><h2>Prefer to connect directly?</h2><ul>{channels.map(channel=><li>{channel.href?<a href={channel.href} target={channel.external?'_blank':undefined} rel={channel.external?'noopener noreferrer':undefined}><Icon name={channel.icon} size={20} /><span><strong>{channel.label}</strong><span>{channel.detail}</span></span><Icon name="arrow-up-right" size={15} />{channel.external && <span class="sr-only"> (opens in a new tab)</span>}</a>:<div aria-disabled="true"><Icon name={channel.icon} size={20} /><span><strong>{channel.label}</strong><span>{channel.detail}</span></span><span class="channel-pending" aria-hidden="true">↗</span></div>}</li>)}</ul></div><p class="contact-initial-note">A brief outline is enough. Please keep passwords, employee records, and client financial data out of your enquiry.</p></div>
+    <div class="contact-page-form hero-enter hero-enter-visual"><ContactForm id="enquiry" prefix="contact" headingLevel="h2" /></div>
+  </div></div></section>
+  <section class="contact-next-steps" aria-labelledby="contact-next-heading"><div class="shell"><div class="company-section-heading reveal-on-scroll"><p class="company-kicker">WHAT COMES NEXT</p><h2 id="contact-next-heading">Start with a little context.<br /><span>Build from there.</span></h2></div><ol class="contact-next-grid">{nextSteps.map(step=><li class="reveal-on-scroll"><span>{step.number}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></div></section>
+  <section class="contact-help" aria-labelledby="contact-help-heading"><div class="shell reveal-on-scroll"><div><p class="company-kicker">A LITTLE MORE CLARITY</p><h2 id="contact-help-heading">A question before the conversation?</h2><p>Explore how scope, systems, data access, and onboarding are agreed.</p></div><a href="/faq/" class="company-text-link">Visit our FAQs<Icon name="arrow-up-right" size={18} /></a></div></section>
+</CompanyLayout>

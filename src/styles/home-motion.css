@@ -1,0 +1,58 @@
+@layer components {
+  /* Repeat the footer's fine-line motif without competing with the content. */
+  .home-services, .home-contact { position: relative; isolation: isolate; overflow: clip; }
+  .home-process { isolation: isolate; }
+  .home-services > .shell, .home-process > .shell, .home-contact > .shell { position: relative; z-index: 1; }
+  .orbital-accent { position: absolute; z-index: 0; width: 480px; height: 360px; pointer-events: none; color: #8C78B3; opacity: 0.13; }
+  .expertise-orbit { top: -130px; right: -155px; }
+  .process-orbit { bottom: -150px; left: -165px; width: 590px; height: 440px; color: #AA99CF; opacity: 0.1; }
+  .contact-orbit { top: -120px; left: -205px; width: 610px; height: 455px; opacity: 0.14; }
+  .reveal-on-scroll[data-reveal] { transform: translateY(24px); transition-duration: 800ms; }
+  .reveal-on-scroll.is-visible, .reveal-on-scroll:focus-within { opacity: 1; transform: translateY(0); }
+  .value-column:nth-child(2), .audience-card:nth-child(2), .process-steps > li:nth-child(2), .service-yearend, .service-tax { transition-delay: 80ms; }
+  .value-column:nth-child(3), .audience-card:nth-child(3), .process-steps > li:nth-child(3), .service-payroll { transition-delay: 160ms; }
+  .process-steps > li:nth-child(4) { transition-delay: 220ms; }
+  .contact-form-panel { transition-delay: 100ms; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Individual transforms preserve the board's composed tilt. */
+  .workspace-board { animation: workspace-float 10s 1s ease-in-out infinite; }
+  .team-note { animation: note-float 8s 400ms ease-in-out infinite; }
+  .close-note { animation: note-float 9s 1s ease-in-out infinite reverse; }
+  .scene-orbit-one { animation: hero-orbit-breathe 15s ease-in-out infinite; }
+  .scene-orbit-two { animation: hero-orbit-turn 55s linear infinite; }
+  .scene-cross { animation: cross-drift 12s ease-in-out infinite; }
+  .scene-cross-two { animation-delay: -6s; }
+  .orbital-accent { animation: orbit-drift 24s ease-in-out infinite; }
+  .process-orbit { animation-delay: -8s; }
+  .contact-orbit { animation-delay: -16s; }
+  .footer-orbit { animation: orbit-drift 26s ease-in-out infinite; }
+  .connection-diagram i { animation: connection-pulse 4s ease-in-out infinite; }
+  .connection-diagram i:nth-child(2) { animation-delay: 500ms; }
+  .connection-diagram i:nth-child(3) { animation-delay: 1s; }
+  .home-hero:not([data-motion-active]) :is(.workspace-board, .team-note, .close-note, .scene-orbit, .scene-cross),
+  section:not([data-motion-active]) :is(.orbital-accent, .connection-diagram i),
+  .site-footer:not([data-motion-active]) .footer-orbit { animation-play-state: paused; }
+  .value-column[data-reveal].is-visible .value-art > svg { animation: illustration-arrive 1s var(--ease-refined) both; }
+  .service-bookkeeping[data-reveal].is-visible .ledger-art { animation: illustration-arrive 1.1s 120ms var(--ease-refined) both; }
+}
+
+@keyframes workspace-float { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: 0 -8px; rotate: 0.6deg; } }
+@keyframes note-float { 0%, 100% { translate: 0 0; } 50% { translate: 3px -10px; } }
+@keyframes hero-orbit-breathe { 0%, 100% { scale: 1; } 50% { scale: 1.025; } }
+@keyframes hero-orbit-turn { to { rotate: 360deg; } }
+@keyframes cross-drift { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: 0 -7px; rotate: 12deg; } }
+@keyframes orbit-drift { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: 10px -8px; rotate: 4deg; } }
+@keyframes connection-pulse { 0%, 70%, 100% { opacity: 0.5; scale: 1; } 35% { opacity: 1; scale: 1 1.3; } }
+@keyframes illustration-arrive { from { opacity: 0.4; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
+
+@media (width < 40rem) {
+  .orbital-accent { width: 360px; height: 270px; }
+  .expertise-orbit { right: -210px; top: -80px; }
+  .process-orbit { left: -230px; bottom: -80px; }
+  .contact-orbit { left: -245px; top: -60px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll[data-reveal] { opacity: 1; transform: none; }
+}

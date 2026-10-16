@@ -1,0 +1,48 @@
+/* One cobalt accent per grid, with the same contrast in either theme. */
+:root .featured-card,
+:root[data-theme='dark'] .featured-card {
+  background: #4354D3;
+  border-color: #4354D3;
+  color: #FFFFFF;
+}
+
+:root .featured-card h3,
+:root[data-theme='dark'] .featured-card h3,
+:root .featured-card .audience-profile-link,
+:root[data-theme='dark'] .featured-card .audience-profile-link {
+  color: #FFFFFF;
+}
+
+:root .featured-card :is(.audience-description, .audience-detail, .audience-subtitle, .audience-card-top, .scope-card-index, p),
+:root[data-theme='dark'] .featured-card :is(.audience-description, .audience-detail, .audience-subtitle, .audience-card-top, .scope-card-index, p),
+:root[data-theme='dark'] .audience-card.featured-card .audience-description {
+  color: #E4E8FF;
+}
+
+:root .featured-card :is(.audience-card-top > span, .audience-profile-link > svg),
+:root[data-theme='dark'] .featured-card :is(.audience-card-top > span, .audience-profile-link > svg),
+:root .related-service-card.featured-card > span,
+:root[data-theme='dark'] .related-service-card.featured-card > span {
+  color: #CFD6FF;
+}
+
+:root .featured-card .audience-detail,
+:root[data-theme='dark'] .featured-card .audience-detail {
+  border-color: rgb(255 255 255 / 22%);
+}
+
+:root .featured-card .audience-detail > span,
+:root[data-theme='dark'] .featured-card .audience-detail > span {
+  background: #CFD6FF;
+}
+
+:root .related-service-card.featured-card:hover,
+:root[data-theme='dark'] .related-service-card.featured-card:hover {
+  background: #394AC3;
+  border-color: #394AC3;
+}
+
+:root .featured-card .audience-profile-link:hover,
+:root[data-theme='dark'] .featured-card .audience-profile-link:hover {
+  color: #E4E8FF;
+}

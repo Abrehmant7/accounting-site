@@ -1,0 +1,95 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { services } from '@/config/site';
+const pathname = Astro.url.pathname;
+const links = [
+  { label: 'Home', href: '/' },
+  { label: 'Who we serve', href: '/who-we-serve/' },
+  { label: 'About us', href: '/about/' },
+  { label: 'FAQs', href: '/faq/' },
+];
+---
+<header class="site-header sticky top-0 z-40">
+  <div class="shell flex h-22 items-center justify-between gap-5">
+    <Logo />
+    <nav aria-label="Main navigation" class="desktop-navigation hidden items-center gap-7 lg:flex">
+      <a href="/" class="nav-link" aria-current={pathname === '/' ? 'page' : undefined}>{pathname === '/' && <span class="nav-active-dot" aria-hidden="true"></span>}Home</a>
+      <details class="relative" data-disclosure>
+        <summary class:list={['nav-link', { 'services-is-current': pathname.startsWith('/services/') }]}>{pathname.startsWith('/services/') && <span class="nav-active-dot" aria-hidden="true"></span>}Services <Icon name="chevron-down" size={14} class="disclosure-chevron" /></summary>
+        <div class="services-dropdown absolute top-[calc(100%+1rem)] left-[-1.25rem] w-[25rem] rounded-2xl border border-border bg-white p-3 shadow-float">
+          <div class="flex items-center justify-between px-3 pt-3 pb-4"><p class="text-[0.625rem] font-bold tracking-[0.15em] text-muted uppercase">The support behind your next step</p><Icon name="layers" size={16} class="text-cobalt" /></div>
+          <ul>
+            {services.map((service, index) => <li><a href={service.href} aria-current={pathname === service.href ? 'page' : undefined} class="service-menu-link flex items-center gap-3 rounded-lg px-3 py-3.5 text-xs font-medium transition-colors hover:bg-canvas hover:text-cobalt"><span class="text-[0.625rem] text-muted/70">0{index + 1}</span><span>{service.label}</span><Icon name="arrow-up-right" size={14} class="ml-auto text-muted" /></a></li>)}
+          </ul>
+          <a href="/#expertise" class="mt-2 flex items-center justify-between rounded-lg bg-canvas px-3 py-3 text-[0.6875rem] font-medium">Your finance, thoughtfully connected.<Icon name="arrow-right" size={14} class="text-cobalt" /></a>
+        </div>
+      </details>
+      {links.slice(1).map((link) => <a href={link.href} class="nav-link" aria-current={pathname === link.href ? 'page' : undefined}>{link.label}</a>)}
+    </nav>
+    <div class="header-actions">
+      <ThemeToggle />
+      <a href="/contact/" class="header-cta hidden lg:inline-flex">Let’s talk <span><Icon name="arrow-up-right" size={15} /></span></a>
+      <button type="button" class="icon-button lg:hidden" data-open-drawer aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation"><Icon name="menu" /></button>
+    </div>
+  </div>
+</header>
+
+<dialog id="mobile-navigation" aria-labelledby="mobile-navigation-title" class="fixed inset-y-0 right-0 left-auto z-50 m-0 h-dvh w-[min(100%,26rem)] border-0 bg-white p-0 text-heading shadow-float">
+  <div class="flex h-full flex-col overflow-y-auto p-6">
+    <div class="mb-8 flex items-center justify-between gap-5">
+      <h2 id="mobile-navigation-title" class="text-sm font-semibold">Navigation</h2>
+      <button type="button" class="icon-button" data-close-drawer aria-label="Close navigation" autofocus><Icon name="close" /></button>
+    </div>
+    <nav aria-label="Mobile navigation" class="flex flex-col">
+      <a href="/" class="border-b border-border py-4 text-sm font-semibold" aria-current={pathname === '/' ? 'page' : undefined}>Home</a>
+      <details class="border-b border-border" data-mobile-services>
+        <summary class="flex min-h-14 items-center justify-between text-sm font-semibold">Services <Icon name="chevron-down" size={16} class="disclosure-chevron" /></summary>
+        <ul class="space-y-1 pb-4">
+          {services.map((service) => <li><a href={service.href} aria-current={pathname === service.href ? 'page' : undefined} class="block rounded-lg px-3 py-3 text-xs leading-relaxed text-muted hover:bg-canvas hover:text-heading">{service.label}</a></li>)}
+        </ul>
+      </details>
+      {links.slice(1).map((link) => <a href={link.href} class="border-b border-border py-4 text-sm font-semibold" aria-current={pathname === link.href ? 'page' : undefined}>{link.label}</a>)}
+    </nav>
+    <div class="mt-auto pt-8">
+      <a href="/contact/" class="btn-primary w-full">Let’s talk <Icon name="arrow-up-right" size={16} /></a>
+      <p class="mt-4 text-center text-[0.6875rem] text-muted">Finance & accounting, thoughtfully connected.</p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 12);
+  updateHeader();
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  const drawer = document.querySelector<HTMLDialogElement>('#mobile-navigation');
+  const openButton = document.querySelector<HTMLButtonElement>('[data-open-drawer]');
+  const closeButton = drawer?.querySelector<HTMLButtonElement>('[data-close-drawer]');
+
+  if (drawer && openButton && closeButton) {
+    openButton.addEventListener('click', () => {
+      drawer.showModal();
+      openButton.setAttribute('aria-expanded', 'true');
+    });
+    closeButton.addEventListener('click', () => drawer.close());
+    drawer.addEventListener('close', () => {
+      openButton.setAttribute('aria-expanded', 'false');
+      drawer.querySelectorAll('details').forEach((details) => { details.open = false; });
+      openButton.focus({ preventScroll: true });
+    });
+    drawer.addEventListener('click', (event) => {
+      if (event.target !== drawer) return;
+      const bounds = drawer.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) drawer.close();
+    });
+    drawer.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => drawer.close()));
+    window.matchMedia('(min-width: 64rem)').addEventListener('change', (event) => {
+      if (event.matches && drawer.open) drawer.close();
+    });
+  }
+</script>
+
+<noscript><nav aria-label="Navigation without JavaScript" class="shell flex flex-wrap gap-x-5 gap-y-1 pb-4 lg:hidden">{[...links, ...services].map((link) => <a href={link.href} class="nav-link">{link.label}</a>)}<a class="nav-link" href="/contact/">Contact us</a></nav></noscript>
+

@@ -1,0 +1,12 @@
+---
+interface Props { class?: string; }
+const { class: className = '' } = Astro.props;
+---
+<svg class:list={['orbital-accent', className]} viewBox="0 0 480 360" fill="none" aria-hidden="true" focusable="false">
+  <g transform="rotate(-32 240 180)" stroke="currentColor" stroke-width="0.8">
+    <ellipse cx="240" cy="180" rx="228" ry="75" />
+    <ellipse cx="240" cy="180" rx="228" ry="105" />
+    <ellipse cx="240" cy="180" rx="228" ry="137" />
+    <circle cx="468" cy="180" r="3" fill="currentColor" stroke="none" />
+  </g>
+</svg>
